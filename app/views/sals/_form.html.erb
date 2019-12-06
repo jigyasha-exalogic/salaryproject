@@ -47,7 +47,10 @@
   </tr>
 </table>
 <br>
-<%= link_to 'Back to Home', "/users" , :class => "links"%> &nbsp;&nbsp;
-<%= f.submit 'Submit', :class => "links"%>
+<%= link_to 'Home', "/users" , :class => "links"%> &nbsp;&nbsp;
+<% if session[:temp] == "edit" %>
+  <%= link_to 'Back', edit_user_path, :class => "links" %>&nbsp;&nbsp;
+  <% end %>
+<%= f.submit 'Next', :class => "links"%>
 </fieldset>
 <% end %>

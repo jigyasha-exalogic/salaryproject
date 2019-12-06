@@ -32,7 +32,7 @@
   	<%end%>
 <p id="notice"><%= notice %></p>
 <table align = center>
-	<td colspan="4"><label><h3><b>PERSONAL DETAILS</b></h3></label></td>
+	<td colspan="4" style="color: #3b5998;"><label><h3><b>PERSONAL DETAILS</b></h3></label></td>
   <tr>
 	<td><strong>First Name:</strong></td>
 	<td><%= @user.fname %></td>
@@ -51,7 +51,7 @@
 	<td><strong>Blood Group:</strong></td>
 	<td><%= @user.blood_type %></td>
   </tr>
-  <td colspan="4"><label><h3><b>CONTACT DETAILS</b></h3></label></td>
+  <td colspan="4" style="color: #3b5998;"><label><h3><b>CONTACT DETAILS</b></h3></label></td>
   <tr>
 	<td><strong>Email:</strong></td>
 	<td><%= @user.email %></td>
@@ -74,14 +74,14 @@
   	<td><strong>Country:</strong></td>
 	<td><%= @user.country %></td>
   </tr>
-   <td colspan="4"><label><h3><b>EMERGENCY CONTACT DETAILS</b></h3></label></td>
+   <td colspan="4" style="color: #3b5998;"><label><h3><b>EMERGENCY CONTACT DETAILS</b></h3></label></td>
   <tr>
 	<td><strong>Contact Name:</strong></td>
 	<td><%= @user.emergency_name %></td>
 	<td><strong>Contact Number:</strong></td>
 	<td><%= @user.emergency_number.to_i %></td>
   </tr>
-   <td colspan="4"><label><h3><b>PROFESSIONAL DETAILS</b></h3></label></td>
+   <td colspan="4" style="color: #3b5998;"><label><h3><b>PROFESSIONAL DETAILS</b></h3></label></td>
   <tr>
 	<td><strong>Primary Skill:</strong></td>
 	<td><%= @user.primary_skill %></td>
@@ -94,9 +94,9 @@
 	<td><strong>Notice Period(in days):</strong></td>
 	<td><%= @user.notice.to_i %></td>
   </tr>
-   <td colspan="4"><label><h3><b>SALARY DETAILS</b></h3></label></td>
+   <td colspan="4" style="color: #3b5998;"><label><h3><b>SALARY DETAILS</b></h3></label></td>
    <tr>
-   <td colspan="4"><label><b>ADDITIONS</b></label></td>
+   <td colspan="4" style="text-decoration: underline; color: #3b5998"><label><b>ADDITIONS</b></label></td>
    </tr>
     <tr>
 	<td><strong>Basic Pay:</strong></td>
@@ -121,7 +121,7 @@
 	<td><%= @gross.to_i %></td>
   </tr>
   <tr>
-   <td colspan="4"><label><b>DEDUCTIONS</b></label></td>
+   <td colspan="4" style="text-decoration: underline; color: #3b5998"><label><b>DEDUCTIONS</b></label></td>
    </tr>
   <tr>
 	<td><strong>Professional Tax:</strong></td>
@@ -140,7 +140,7 @@
 	<td><%= @itc.to_i %></td>
 </tr>
 	<tr>
-   <td colspan="4"><label><h4><b>TOTAL SALARY</b></h4></label></td>
+   <td colspan="4" style="text-decoration: underline; color: #3b5998"><label><b>TOTAL SALARY</b></label></td>
    </tr>
   <tr>
 	<td><strong>Salary Per Month:</strong></td>
@@ -148,14 +148,30 @@
 	<td><strong>Salary Per Annum:</strong></td>
 	<td><%= @salary_per_annum.to_i %></td>
   </tr>
-  
   <tr>
-    </tr>
+   <td colspan="4" style="color: #3b5998;"><label><h3><b>BANK DETAILS</b></h3></label></td>
+   </tr>
+  <tr>
+	<td><strong>Account Number:</strong></td>
+	<td><%= @acc.acno.to_i %></td>
+	<td><strong>Account Holder Name:</strong></td>
+	<td><%= @acc.acname %></td>
+  </tr>
+   <tr>
+	<td><strong>IFSC Code:</strong></td>
+	<td><%= @acc.ifsc %></td>
+	<td><strong>Bank Name:</strong></td>
+	<td><%= @acc.bankname %></td>
+  </tr>
+   <tr>
+	<td><strong>Branch:</strong></td>
+	<td><%= @acc.branch %></td>
+  </tr>
 </table>
 <br>
 <br>
 <% if session[:user_type]=='admin'%>
-	<%= link_to 'Back to Home', users_path, :class => "links" %>&nbsp;&nbsp;
+	<%= link_to 'Home', users_path, :class => "links" %>&nbsp;&nbsp;
 	<%= link_to 'Edit', edit_user_path(@user), :class => "links" %> 
 <% end %>
 </body>

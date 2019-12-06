@@ -92,7 +92,11 @@
   </tr>
 </table>
 <br>
-<%= link_to 'Back to Home', users_path, :class => "links" %> &nbsp;&nbsp;
-<%= f.submit 'Next', :class => "links" %><br/><br/>
+<%= link_to 'Home', users_path, :class => "links" %> &nbsp;&nbsp;
+<% if session[:temp] == "edit" %>
+  <%= link_to 'Edit Bank Details', edit_account_path, :class => "links" %>&nbsp;&nbsp;
+  <% end %>
+<%= f.submit 'Next', :class => "links" %>
+
 </fieldset>
 <% end%>

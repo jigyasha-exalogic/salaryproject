@@ -14,9 +14,8 @@ class SalsController < ApplicationController
     @sal.id = session[:user_id]
     @user = User.find(session[:user_id])
     if @sal.save
-      redirect_to user_path(session[:user_id])
+      redirect_to new_account_path(session[:user_id])
     else
-     	@error = "jih"
       render 'new'
     end
 	end
@@ -28,9 +27,9 @@ class SalsController < ApplicationController
 
    def update
       @sal = Sal.find(params[:id])
-        @user = User.find(params[:id])
+      @user = User.find(params[:id])
       if @sal.update(sal_params)
-        redirect_to user_path(params[:id])
+        redirect_to edit_account_path(params[:id])
       else
         render 'edit'
       end

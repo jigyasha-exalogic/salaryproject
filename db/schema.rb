@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_091007) do
+ActiveRecord::Schema.define(version: 2019_12_06_110347) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "acno"
+    t.string "acname"
+    t.string "bankname"
+    t.string "ifsc"
+    t.string "branch"
+    t.string "userid"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -62,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_091007) do
     t.string "city"
     t.string "role"
     t.string "country"
+    t.string "empid", default: "0000"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -8,12 +8,14 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    session[:temp]="new"
   end
 
   def create
     @error
     @user = User.new(user_params)
     if @user.save
+      @user.update(empid: (@user.id.to_s.rjust(4,"0"))) 
       session[:user_id]=@user.id
       redirect_to new_sal_path
     else
@@ -38,13 +40,12 @@ class UsersController < ApplicationController
     end
     @net = @gross - @deduction
     @salary_per_month = @net
-    @salary_per_annum = @gross * 12
-   # @sal.basic, @sal.hra, @sal.cca, @sal.sa, @sal.ta, @sal.reim, @sal.lop, @sal.od = nil?(@sal.basic, @sal.hra, @sal.cca, @sal.sa, @sal.ta, @sal.reim, @sal.lop, @sal.od)
-
+    @acc=Account.find(params[:id])
   end
 
   def edit
     @user = User.find(params[:id])
+    session[:temp]="edit"
   end
 
   def update
@@ -59,15 +60,17 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @sal = Sal.find(params[:id])
+    @acc = Account.find(params[:id])
     @user.delete
     @sal.delete
+    @acc.delete
     redirect_to '/users'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :fname, :lname, :age, :date_of_joining, :salary_per_annum, :salary_per_month, :phonenumber, :address, :blood_type, :emergency_name, :emergency_number, :primary_skill, :secondary_skill1, :secondary_skill2, :notice, :gender, :state, :pincode, :city, :country)
+  params.require(:user).permit(:email, :password, :password_confirmation, :fname, :lname, :age,:date_of_joining,:salary_per_annum, :salary_per_month, :phonenumber, :address, :blood_type, :emergency_name,:emergency_number, :primary_skill, :secondary_skill1, :secondary_skill2, :notice, :gender, :state, :pincode, :city, :country)
   end
 
   def admin?
@@ -117,13 +120,5 @@ class UsersController < ApplicationController
     l = (@sal.basic/30) * lop
     return l
   end
-
-  # def nil?(*args)
-  #   for i in args
-  #     if i == nil
-  #       i = 0
-  #     end
-  #   end
-  # end
 end
 
